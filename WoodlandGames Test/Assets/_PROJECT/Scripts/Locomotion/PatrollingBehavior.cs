@@ -11,7 +11,7 @@ namespace _PROJECT.Scripts.Locomotion
 
         private EnemyMover _enemyMover;
         private Vector3 _guardPosition;
-        private float _timeSinceArrivedAtWaypoint;
+        private float _timeSinceArrivedAtWaypoint = Mathf.Infinity;
         private int _currentWaypointIndex;
 
         private void Awake()
@@ -41,10 +41,20 @@ namespace _PROJECT.Scripts.Locomotion
 
             if (_timeSinceArrivedAtWaypoint > dwellingTime)
             {
-                _enemyMover.MoveOn(nextPosition);
+                _enemyMover.MoveToPosition(nextPosition);
+                
+                if (WaypointIsOutOfReach())
+                {
+                    ReloadWaypoint();
+                }
             }
             
             UpdateTimer();
+        }
+
+        private bool WaypointIsOutOfReach()
+        {
+            return !_enemyMover.CanMoveToPosition();
         }
 
         private bool AtWaypoint()

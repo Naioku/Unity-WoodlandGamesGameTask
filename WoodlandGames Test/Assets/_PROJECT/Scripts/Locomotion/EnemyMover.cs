@@ -12,9 +12,14 @@ namespace _PROJECT.Scripts.Locomotion
             _navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
-        public void MoveOn(Vector3 position)
+        public void MoveToPosition(Vector3 position)
         {
             _navMeshAgent.destination = position;
+        }
+
+        public bool CanMoveToPosition()
+        {
+            return _navMeshAgent.path.status == NavMeshPathStatus.PathComplete;
         }
     }
 }
