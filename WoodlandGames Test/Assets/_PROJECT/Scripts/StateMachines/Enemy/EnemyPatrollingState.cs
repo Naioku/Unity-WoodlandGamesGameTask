@@ -8,11 +8,11 @@ namespace _PROJECT.Scripts.StateMachines.Enemy
         
         public override void Enter()
         {
-            StateMachine.EnemyMover.MoveOn(new Vector3(3.59f, 1.56f, -22.73f));
         }
 
         public override void Tick(float deltaTime)
         {
+            StateMachine.PatrollingBehavior.Patrol();
         }
 
         public override void Exit()

@@ -4,11 +4,11 @@ namespace _PROJECT.Scripts.StateMachines.Enemy
 {
     public class EnemyStateMachine : StateMachine
     {
-        public EnemyMover EnemyMover { get; private set; }
+        public PatrollingBehavior PatrollingBehavior { get; private set; }
 
         private void Awake()
         {
-            EnemyMover = GetComponent<EnemyMover>();
+            PatrollingBehavior = GetComponent<PatrollingBehavior>();
         }
 
         private void Start()
