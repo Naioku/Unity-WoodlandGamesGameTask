@@ -6,8 +6,8 @@ namespace _PROJECT.Scripts.StateMachines.Enemy
     public class EnemyStateMachine : StateMachine
     {
         public PatrollingBehavior PatrollingBehavior { get; private set; }
-        
-        [field: SerializeField] public EnemyDoorDetector EnemyDoorDetector { get; private set; }
+
+        [SerializeField] private EnemyDoorDetector enemyDoorDetector;
 
         private void Awake()
         {
@@ -21,12 +21,12 @@ namespace _PROJECT.Scripts.StateMachines.Enemy
 
         private void OnEnable()
         {
-            EnemyDoorDetector.OpenDoorEvent += OnDoorOpening;
+            enemyDoorDetector.OpenDoorEvent += OnDoorOpening;
         }
         
         private void OnDisable()
         {
-            EnemyDoorDetector.OpenDoorEvent -= OnDoorOpening;
+            enemyDoorDetector.OpenDoorEvent -= OnDoorOpening;
         }
 
         private void OnDoorOpening()
