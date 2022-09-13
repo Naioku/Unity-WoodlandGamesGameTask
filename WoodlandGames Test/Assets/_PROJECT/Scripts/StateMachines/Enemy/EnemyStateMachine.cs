@@ -1,10 +1,13 @@
 using _PROJECT.Scripts.Locomotion;
+using UnityEngine;
 
 namespace _PROJECT.Scripts.StateMachines.Enemy
 {
     public class EnemyStateMachine : StateMachine
     {
         public PatrollingBehavior PatrollingBehavior { get; private set; }
+        
+        [field: SerializeField] public EnemyDoorDetector EnemyDoorDetector { get; private set; }
 
         private void Awake()
         {
@@ -14,6 +17,21 @@ namespace _PROJECT.Scripts.StateMachines.Enemy
         private void Start()
         {
             SwitchState(new EnemyPatrollingState(this));
+        }
+
+        private void OnEnable()
+        {
+            EnemyDoorDetector.OpenDoorEvent += OnDoorOpening;
+        }
+        
+        private void OnDisable()
+        {
+            EnemyDoorDetector.OpenDoorEvent -= OnDoorOpening;
+        }
+
+        private void OnDoorOpening()
+        {
+            print("OnDoorOpening");
         }
     }
 }
