@@ -1090,9 +1090,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1349939974}
-  - component: {fileID: 1349939975}
   - component: {fileID: 1349939977}
   - component: {fileID: 1349939976}
+  - component: {fileID: 1349939975}
   m_Layer: 6
   m_Name: Detector
   m_TagString: Enemy
@@ -1108,14 +1108,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1349939973}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.481}
+  m_LocalPosition: {x: 0, y: 0, z: 0.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1210530174}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1349939975
-SphereCollider:
+--- !u!65 &1349939975
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1125,8 +1125,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.75, y: 1.78, z: 3.0358586}
+  m_Center: {x: -5.0147375e-13, y: 0, z: -0.05422545}
 --- !u!114 &1349939976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2319,10 +2319,6 @@ PrefabInstance:
     - target: {fileID: 2343557988726097380, guid: 5b70fce1574aefc4cb68b92f61c29348, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5085325177798235221, guid: 5b70fce1574aefc4cb68b92f61c29348, type: 3}
-      propertyPath: waitTimeBetweenOpeningAndClosing
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6135435090099431420, guid: 5b70fce1574aefc4cb68b92f61c29348, type: 3}
       propertyPath: m_Name

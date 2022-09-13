@@ -21,5 +21,15 @@ namespace _PROJECT.Scripts.Locomotion
         {
             return _navMeshAgent.path.status == NavMeshPathStatus.PathComplete;
         }
+
+        public void StopMovement()
+        {
+            _navMeshAgent.isStopped = true;
+        }
+
+        public void ResumeMovement()
+        {
+            _navMeshAgent.isStopped = false;
+        }
     }
 }

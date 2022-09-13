@@ -10,7 +10,6 @@ namespace _PROJECT.Scripts.Locomotion
         [SerializeField] private float dwellingTime = 2f;
 
         private EnemyMover _enemyMover;
-        private Vector3 _guardPosition;
         private float _timeSinceArrivedAtWaypoint = Mathf.Infinity;
         private int _currentWaypointIndex;
 
@@ -19,29 +18,17 @@ namespace _PROJECT.Scripts.Locomotion
             _enemyMover = GetComponent<EnemyMover>();
         }
 
-        private void Start()
-        {
-            _guardPosition = transform.position;
-        }
-
         public void Patrol()
         {
-            Vector3 nextPosition = _guardPosition;
-
-            if (patrolPath != null)
+            if (AtWaypoint())
             {
-                if (AtWaypoint())
-                {
-                    _timeSinceArrivedAtWaypoint = 0f;
-                    ReloadWaypoint();
-                }
-
-                nextPosition = GetCurrentWaypointPosition();
+                _timeSinceArrivedAtWaypoint = 0f;
+                ReloadWaypoint();
             }
 
-            if (_timeSinceArrivedAtWaypoint > dwellingTime)
+            if (ShouldMoveToNextWaypoint())
             {
-                _enemyMover.MoveToPosition(nextPosition);
+                _enemyMover.MoveToPosition(GetCurrentWaypointPosition());
                 
                 if (WaypointIsOutOfReach())
                 {
@@ -56,16 +43,27 @@ namespace _PROJECT.Scripts.Locomotion
         {
             return !_enemyMover.CanMoveToPosition();
         }
-
+        
+        /// <summary>
+        /// Vector3.SqrMagnitude() is used for better performance, because Patrol() is called on every frame (look at
+        /// the EnemyPatrollingState and the StateMachine, where Tick() is performed on Update()), so the same is with
+        /// AtWaypoint().
+        /// </summary>
+        /// <returns></returns>
         private bool AtWaypoint()
         {
-            float distanceToWaypoint = Vector3.Distance(transform.position, GetCurrentWaypointPosition());
-            return distanceToWaypoint <= waypointTolerance;
+            float distanceToWaypointSquared = Vector3.SqrMagnitude(transform.position - GetCurrentWaypointPosition());
+            return distanceToWaypointSquared <= waypointTolerance * waypointTolerance;
         }
 
         private void ReloadWaypoint()
         {
             _currentWaypointIndex = patrolPath.GetNextIndex(_currentWaypointIndex);
+        }
+
+        private bool ShouldMoveToNextWaypoint()
+        {
+            return _timeSinceArrivedAtWaypoint > dwellingTime;
         }
 
         private Vector3 GetCurrentWaypointPosition()

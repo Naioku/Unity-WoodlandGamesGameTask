@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace _PROJECT.Scripts.StateMachines.Enemy
 {
     public class EnemyPatrollingState : EnemyBaseState

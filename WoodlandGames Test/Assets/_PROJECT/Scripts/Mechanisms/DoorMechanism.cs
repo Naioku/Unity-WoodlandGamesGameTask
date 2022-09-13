@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -12,8 +11,8 @@ namespace _PROJECT.Scripts.Mechanisms
         [Tooltip("Wait time between starting an opening animation and starting a closing animation.")]
         [SerializeField] private float waitTimeBetweenOpeningAndClosing = 3f;
 
-        private static readonly int OpeningTheDoorHash = Animator.StringToHash("OpeningTheDoor");
-        private static readonly int ClosingTheDoorHash = Animator.StringToHash("ClosingTheDoor");
+        private static readonly int OpenTheDoorHash = Animator.StringToHash("OpenTheDoor");
+        private static readonly int CloseTheDoorHash = Animator.StringToHash("CloseTheDoor");
 
         private Animator _animator;
 
@@ -32,9 +31,9 @@ namespace _PROJECT.Scripts.Mechanisms
 
         private IEnumerator ManageAnimation()
         {
-            _animator.Play(OpeningTheDoorHash);
+            _animator.SetTrigger(OpenTheDoorHash);
             yield return new WaitForSecondsRealtime(waitTimeBetweenOpeningAndClosing);
-            _animator.Play(ClosingTheDoorHash);
+            _animator.SetTrigger(CloseTheDoorHash);
         }
     }
 

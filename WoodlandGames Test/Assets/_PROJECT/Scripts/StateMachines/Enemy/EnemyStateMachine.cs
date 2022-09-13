@@ -6,12 +6,14 @@ namespace _PROJECT.Scripts.StateMachines.Enemy
     public class EnemyStateMachine : StateMachine
     {
         public PatrollingBehavior PatrollingBehavior { get; private set; }
+        public EnemyMover EnemyMover { get; private set; }
 
-        [SerializeField] private EnemyDoorDetector enemyDoorDetector;
+        [field: SerializeField] public EnemyDoorDetector EnemyDoorDetector { get; private set; }
 
         private void Awake()
         {
             PatrollingBehavior = GetComponent<PatrollingBehavior>();
+            EnemyMover = GetComponent<EnemyMover>();
         }
 
         private void Start()
@@ -21,17 +23,17 @@ namespace _PROJECT.Scripts.StateMachines.Enemy
 
         private void OnEnable()
         {
-            enemyDoorDetector.OpenDoorEvent += OnDoorOpening;
+            EnemyDoorDetector.OpenDoorEvent += OnDoorOpening;
         }
         
         private void OnDisable()
         {
-            enemyDoorDetector.OpenDoorEvent -= OnDoorOpening;
+            EnemyDoorDetector.OpenDoorEvent -= OnDoorOpening;
         }
 
         private void OnDoorOpening()
         {
-            print("OnDoorOpening");
+            SwitchState(new EnemyOpeningDoorState(this));
         }
     }
 }
