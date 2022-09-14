@@ -7,17 +7,17 @@ namespace _PROJECT.Scripts.Combat
     public class AISensor : MonoBehaviour
     {
         [SerializeField] private float distance = 10f;
-        [SerializeField] [Range(0f, 360f)] private float angle = 30f;
+        [SerializeField] [Range(0f, 360f)] private float angle = 120f;
         [SerializeField] private float height = 1f;
-        [SerializeField] private Color meshColor = new Color(0.3657968f, 1, 0.3254717f, 0.38f);
+        [SerializeField] private Color defaultMeshColor = new Color(0.3657968f, 1, 0.3254717f, 0.38f);
+        [SerializeField] private Color detectedStateMeshColor = new Color(0.3657968f, 1, 0.3254717f, 0.38f);
         [SerializeField] private Color rangeGizmosColor = Color.green;
-        [SerializeField] private Color objectsInRangeGizmosColor = Color.red;
         [SerializeField] private Color objectsInSightGizmosColor = Color.blue;
         [SerializeField] [Tooltip("Times / second")] private int scanFrequency = 30;
         [SerializeField] private LayerMask searchingLayers;
         [SerializeField] private LayerMask occlusionLayers;
         
-        private readonly List<GameObject> _objects = new List<GameObject>();
+        private readonly List<GameObject> _detectedObjects = new List<GameObject>();
         private Mesh _mesh;
         private readonly Collider[] _colliders = new Collider[50];
         private int _count;
@@ -26,6 +26,15 @@ namespace _PROJECT.Scripts.Combat
         private float ScanInterval => 1f / scanFrequency;
         private float HalfAngle => angle / 2;
 
+        private List<GameObject> DetectedObjects
+        {
+            get
+            {
+                _detectedObjects.RemoveAll(obj => !obj);
+                return _detectedObjects;
+            }
+        }
+        
         void Update()
         {
             _scanTimer -= Time.deltaTime;
@@ -46,7 +55,6 @@ namespace _PROJECT.Scripts.Combat
             if (!_mesh) return;
             DrawSensorMesh();
             DrawRange();
-            HighlightObjectsRange();
             HighlightObjectsInSight();
         }
 
@@ -55,13 +63,13 @@ namespace _PROJECT.Scripts.Combat
             _count = Physics.OverlapSphereNonAlloc
                 (transform.position, distance, _colliders, searchingLayers, QueryTriggerInteraction.Collide);
             
-            _objects.Clear();
+            _detectedObjects.Clear();
             for (int i = 0; i < _count; i++)
             {
                 GameObject gameObj = _colliders[i].gameObject;
                 if (IsInSight(gameObj))
                 {
-                    _objects.Add(gameObj);
+                    _detectedObjects.Add(gameObj);
                 }
             }
         }
@@ -151,8 +159,13 @@ namespace _PROJECT.Scripts.Combat
         
         private void DrawSensorMesh()
         {
-            Gizmos.color = meshColor;
+            Gizmos.color = IsTargetDetected() ? detectedStateMeshColor : defaultMeshColor;
             Gizmos.DrawMesh(_mesh, transform.position, transform.rotation);
+        }
+
+        private bool IsTargetDetected()
+        {
+            return DetectedObjects.Count != 0;
         }
 
         private void DrawRange()
@@ -161,19 +174,10 @@ namespace _PROJECT.Scripts.Combat
             Gizmos.DrawWireSphere(transform.position, distance);
         }
 
-        private void HighlightObjectsRange()
-        {
-            Gizmos.color = objectsInRangeGizmosColor;
-            for (int i = 0; i < _count; i++)
-            {
-                Gizmos.DrawSphere(_colliders[i].transform.position, 0.2f);
-            }
-        }
-
         private void HighlightObjectsInSight()
         {
             Gizmos.color = objectsInSightGizmosColor;
-            foreach (GameObject gameObj in _objects)
+            foreach (GameObject gameObj in DetectedObjects)
             {
                 Gizmos.DrawSphere(gameObj.transform.position, 0.2f);
             }
