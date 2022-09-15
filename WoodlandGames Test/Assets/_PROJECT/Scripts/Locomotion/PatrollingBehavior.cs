@@ -28,9 +28,7 @@ namespace _PROJECT.Scripts.Locomotion
 
             if (ShouldMoveToNextWaypoint())
             {
-                _enemyMover.MoveToPosition(GetCurrentWaypointPosition());
-                
-                if (WaypointIsOutOfReach())
+                if (!_enemyMover.MoveToPosition(GetCurrentWaypointPosition()))
                 {
                     ReloadWaypoint();
                 }
@@ -39,11 +37,6 @@ namespace _PROJECT.Scripts.Locomotion
             UpdateTimer();
         }
 
-        private bool WaypointIsOutOfReach()
-        {
-            return !_enemyMover.CanMoveToPosition();
-        }
-        
         /// <summary>
         /// Vector3.SqrMagnitude() is used for better performance, because Patrol() is called on every frame (look at
         /// the EnemyPatrollingState and the StateMachine, where Tick() is performed on Update()), so the same is with

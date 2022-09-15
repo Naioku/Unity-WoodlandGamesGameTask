@@ -5,6 +5,9 @@ namespace _PROJECT.Scripts.Locomotion
 {
     public class EnemyMover : MonoBehaviour
     {
+        [SerializeField] private float chasingSpeed = 5f;
+        [SerializeField] private float defaultSpeed = 3.5f;
+        
         private NavMeshAgent _navMeshAgent;
 
         private void Awake()
@@ -12,14 +15,35 @@ namespace _PROJECT.Scripts.Locomotion
             _navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
-        public void MoveToPosition(Vector3 position)
+        private void Start()
         {
-            _navMeshAgent.destination = position;
+            _navMeshAgent.speed = defaultSpeed;
         }
 
-        public bool CanMoveToPosition()
+        public bool MoveToPosition(Vector3 position)
         {
-            return _navMeshAgent.path.status == NavMeshPathStatus.PathComplete;
+            if (!CanMoveToPosition(position)) return false;
+            
+            _navMeshAgent.destination = position;
+            _navMeshAgent.speed = defaultSpeed;
+            return true;
+        }
+
+        public bool ChaseToPosition(Vector3 position)
+        {
+            if (!CanMoveToPosition(position)) return false;
+
+            _navMeshAgent.destination = position;
+            _navMeshAgent.speed = chasingSpeed;
+            return true;
+        }
+
+        public bool CanMoveToPosition(Vector3 position)
+        {
+            NavMeshPath navMeshPath = new NavMeshPath();
+            _navMeshAgent.CalculatePath(position, navMeshPath);
+            
+            return navMeshPath.status == NavMeshPathStatus.PathComplete;
         }
 
         public void StopMovement()

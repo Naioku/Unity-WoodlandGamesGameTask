@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ namespace _PROJECT.Scripts.Combat
     [ExecuteInEditMode]
     public class AISensor : MonoBehaviour
     {
+        public event Action<List<Transform>> TargetDetectedEvent;
+        
         [SerializeField] private float distance = 10f;
         [SerializeField] [Range(0f, 360f)] private float angle = 120f;
         [SerializeField] private float height = 1f;
@@ -17,7 +20,7 @@ namespace _PROJECT.Scripts.Combat
         [SerializeField] private LayerMask searchingLayers;
         [SerializeField] private LayerMask occlusionLayers;
         
-        private readonly List<GameObject> _detectedObjects = new List<GameObject>();
+        private readonly List<Transform> _detectedObjects = new List<Transform>();
         private Mesh _mesh;
         private int _count;
         private float _scanTimer;
@@ -25,7 +28,7 @@ namespace _PROJECT.Scripts.Combat
         private float ScanInterval => 1f / scanFrequency;
         private float HalfAngle => angle / 2;
 
-        private List<GameObject> DetectedObjects
+        private List<Transform> DetectedObjects
         {
             get
             {
@@ -66,11 +69,11 @@ namespace _PROJECT.Scripts.Combat
             _detectedObjects.Clear();
             for (int i = 0; i < _count; i++)
             {
-                GameObject gameObj = colliders[i].gameObject;
+                Transform gameObj = colliders[i].gameObject.transform;
                 if (IsInSight(gameObj))
                 {
                     _detectedObjects.Add(gameObj);
-                    // Invoke OnDetectTarget event
+                    TargetDetectedEvent?.Invoke(DetectedObjects);
                 }
             }
         }
@@ -178,13 +181,13 @@ namespace _PROJECT.Scripts.Combat
         private void HighlightObjectsInSight()
         {
             Gizmos.color = objectsInSightGizmosColor;
-            foreach (GameObject gameObj in DetectedObjects)
+            foreach (Transform gameObj in DetectedObjects)
             {
-                Gizmos.DrawSphere(gameObj.transform.position, 0.2f);
+                Gizmos.DrawSphere(gameObj.position, 0.2f);
             }
         }
         
-        private bool IsInSight(GameObject gameObj)
+        private bool IsInSight(Transform gameObj)
         {
             Bounds gameObjBounds = gameObj.GetComponent<Collider>().bounds;
             

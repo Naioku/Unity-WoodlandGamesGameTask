@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorOnlyForPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 6902709563713790469, guid: 4985b6472a00a864fa6ce19dc7d3f8b6, type: 3}
+      propertyPath: confirmedObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7109703262969179867, guid: 4985b6472a00a864fa6ce19dc7d3f8b6, type: 3}
       propertyPath: m_RootOrder
       value: 0

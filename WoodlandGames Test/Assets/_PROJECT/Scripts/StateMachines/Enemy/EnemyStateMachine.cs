@@ -1,3 +1,4 @@
+using _PROJECT.Scripts.Combat;
 using _PROJECT.Scripts.Locomotion;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace _PROJECT.Scripts.StateMachines.Enemy
         public EnemyMover EnemyMover { get; private set; }
 
         [field: SerializeField] public EnemyDoorDetector EnemyDoorDetector { get; private set; }
+        [field: SerializeField] public AISensor AISensor { get; private set; }
 
         private void Awake()
         {
