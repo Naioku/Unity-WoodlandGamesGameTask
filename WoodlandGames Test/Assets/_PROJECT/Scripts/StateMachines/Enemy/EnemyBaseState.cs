@@ -22,5 +22,11 @@ namespace _PROJECT.Scripts.StateMachines.Enemy
                 }
             }
         }
+        
+        protected bool IsDestinationReached(Vector3 destination, float displacementToleration)
+        {
+            float distanceToWaypointSquared = Vector3.SqrMagnitude(destination - StateMachine.transform.position);
+            return distanceToWaypointSquared <= Mathf.Pow(displacementToleration, 2);
+        }
     }
 }

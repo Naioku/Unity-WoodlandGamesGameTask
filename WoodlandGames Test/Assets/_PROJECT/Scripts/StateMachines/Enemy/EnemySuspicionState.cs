@@ -22,25 +22,20 @@ namespace _PROJECT.Scripts.StateMachines.Enemy
 
         public override void Tick(float deltaTime)
         {
-            if (_canMoveToDestination && !IsDestinationReached()) return;
+            if (_canMoveToDestination && 
+                !IsDestinationReached(_lastSeenTargetPosition, StateMachine.ChasingWaypointsTolerance)) return;
             
             _suspicionTimer -= Time.deltaTime;
 
             if (_suspicionTimer <= 0f)
             {
-                StateMachine.SwitchState(new EnemyPatrollingState(StateMachine));
+                StateMachine.SwitchToDefaultState();
             }
         }
 
         public override void Exit()
         {
             StateMachine.AISensor.TargetDetectedEvent -= OnTargetDetected;
-        }
-        
-        private bool IsDestinationReached()
-        {
-            float distanceToWaypointSquared = Vector3.SqrMagnitude(_lastSeenTargetPosition - StateMachine.transform.position);
-            return distanceToWaypointSquared <= Mathf.Pow(StateMachine.ChasingWaypointsTolerance, 2);
         }
     }
 }

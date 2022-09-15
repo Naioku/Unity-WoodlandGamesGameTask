@@ -23,7 +23,7 @@ namespace _PROJECT.Scripts.StateMachines.Enemy
         private void OnDoorOpened()
         {
             StateMachine.EnemyMover.ResumeMovement();
-            StateMachine.SwitchState(new EnemyPatrollingState(StateMachine));
+            StateMachine.SwitchToDefaultState();
         }
     }
 }
