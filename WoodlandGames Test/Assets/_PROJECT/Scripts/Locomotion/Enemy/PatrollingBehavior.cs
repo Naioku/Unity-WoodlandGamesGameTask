@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _PROJECT.Scripts.Locomotion
+namespace _PROJECT.Scripts.Locomotion.Enemy
 {
     [RequireComponent(typeof(EnemyMover))]
     public class PatrollingBehavior : MonoBehaviour

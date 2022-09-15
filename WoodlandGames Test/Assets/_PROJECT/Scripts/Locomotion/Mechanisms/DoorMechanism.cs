@@ -2,7 +2,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 
-namespace _PROJECT.Scripts.Mechanisms
+namespace _PROJECT.Scripts.Locomotion.Mechanisms
 {
     public class DoorMechanism : MonoBehaviour
     {

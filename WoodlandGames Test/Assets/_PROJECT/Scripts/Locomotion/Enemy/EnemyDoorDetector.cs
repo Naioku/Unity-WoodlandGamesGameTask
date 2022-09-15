@@ -1,8 +1,8 @@
 using System;
-using _PROJECT.Scripts.Mechanisms;
+using _PROJECT.Scripts.Locomotion.Mechanisms;
 using UnityEngine;
 
-namespace _PROJECT.Scripts.Locomotion
+namespace _PROJECT.Scripts.Locomotion.Enemy
 {
     public class EnemyDoorDetector : MonoBehaviour
     {
