@@ -9,8 +9,8 @@ namespace _PROJECT.Scripts.Combat
         [SerializeField] private float distance = 10f;
         [SerializeField] [Range(0f, 360f)] private float angle = 120f;
         [SerializeField] private float height = 1f;
-        [SerializeField] private Color defaultMeshColor = new Color(0.3657968f, 1, 0.3254717f, 0.38f);
-        [SerializeField] private Color detectedStateMeshColor = new Color(0.3657968f, 1, 0.3254717f, 0.38f);
+        [SerializeField] private Color defaultMeshColor = new Color(0.3657968f, 1f, 0.3254717f, 0.38f);
+        [SerializeField] private Color detectedStateMeshColor = new Color(0.9846383f, 1f, 0.3254902f, 0.38f);
         [SerializeField] private Color rangeGizmosColor = Color.green;
         [SerializeField] private Color objectsInSightGizmosColor = Color.blue;
         [SerializeField] [Tooltip("Times / second")] private int scanFrequency = 30;
@@ -19,7 +19,6 @@ namespace _PROJECT.Scripts.Combat
         
         private readonly List<GameObject> _detectedObjects = new List<GameObject>();
         private Mesh _mesh;
-        private readonly Collider[] _colliders = new Collider[50];
         private int _count;
         private float _scanTimer;
 
@@ -60,16 +59,18 @@ namespace _PROJECT.Scripts.Combat
 
         private void Scan()
         {
+            Collider[] colliders = new Collider[50];
             _count = Physics.OverlapSphereNonAlloc
-                (transform.position, distance, _colliders, searchingLayers, QueryTriggerInteraction.Collide);
+                (transform.position, distance, colliders, searchingLayers, QueryTriggerInteraction.Collide);
             
             _detectedObjects.Clear();
             for (int i = 0; i < _count; i++)
             {
-                GameObject gameObj = _colliders[i].gameObject;
+                GameObject gameObj = colliders[i].gameObject;
                 if (IsInSight(gameObj))
                 {
                     _detectedObjects.Add(gameObj);
+                    // Invoke OnDetectTarget event
                 }
             }
         }
@@ -185,25 +186,19 @@ namespace _PROJECT.Scripts.Combat
         
         private bool IsInSight(GameObject gameObj)
         {
-            Vector3 origin = transform.position;
-            Vector3 destination = gameObj.transform.position;
-            Vector3 distanceVector = destination - origin;
+            Bounds gameObjBounds = gameObj.GetComponent<Collider>().bounds;
             
-            if (!IsInVerticalSight(distanceVector))
+            if (!IsInVerticalSight(gameObjBounds))
             {
                 return false;
             }
-
-            distanceVector.y = 0f;
-            float deltaAngle = Vector3.Angle(distanceVector, transform.forward);
-            if (!IsInVerticalAngularSight(deltaAngle))
+            
+            if (!IsInVerticalAngularSight(gameObjBounds))
             {
                 return false;
             }
-
-            origin.y += height / 2;
-            destination.y = origin.y;
-            if (!IsVisible(origin, destination))
+            
+            if (!IsVisible(gameObjBounds))
             {
                 return false;
             }
@@ -211,19 +206,67 @@ namespace _PROJECT.Scripts.Combat
             return true;
         }
 
-        private bool IsVisible(Vector3 origin, Vector3 destination)
+        private bool IsInVerticalSight(Bounds gameObjBounds)
         {
-            return !Physics.Linecast(origin, destination, occlusionLayers);
+            var ownerPosition = transform.position;
+            Vector3 distanceVectorToMinBoundPoint = gameObjBounds.min - ownerPosition;
+            Vector3 distanceVectorToMaxBoundPoint = gameObjBounds.max - ownerPosition;
+            
+            return distanceVectorToMinBoundPoint.y >= 0f && distanceVectorToMinBoundPoint.y <= height ||
+                   distanceVectorToMaxBoundPoint.y >= 0f && distanceVectorToMaxBoundPoint.y <= height;
         }
-
-        private bool IsInVerticalAngularSight(float deltaAngle)
+        
+        
+        private bool IsInVerticalAngularSight(Bounds gameObjBounds)
         {
-            return deltaAngle <= HalfAngle;
+            // As long as You are calculating only on XZ plane, it doesn't matter if You take bottom or top vertices.
+            // But it is important to assign 0f to Y coordinate, because of transform.forward has the Y = 0f;
+            Vector3[] bottomVertices =
+            {
+                new Vector3(gameObjBounds.min.x, 0f, gameObjBounds.min.z),
+                new Vector3(gameObjBounds.max.x, 0f, gameObjBounds.max.z),
+                new Vector3(gameObjBounds.min.x, 0f, gameObjBounds.max.z),
+                new Vector3(gameObjBounds.max.x, 0f, gameObjBounds.min.z)
+            };
+
+            Transform ownerTransform = transform;
+            foreach (var bottomVertex in bottomVertices)
+            {
+                Vector3 distanceVector = bottomVertex - ownerTransform.position;
+                float deltaAngle = Vector3.Angle(distanceVector, ownerTransform.forward);
+                
+                if (deltaAngle <= HalfAngle) return true;
+            }
+
+            return false;
         }
-
-        private bool IsInVerticalSight(Vector3 distanceVector)
+        
+        private bool IsVisible(Bounds gameObjBounds)
         {
-            return distanceVector.y >= 0f && distanceVector.y <= height;
+            Vector3[] allVertices =
+            {
+                // bottom
+                new Vector3(gameObjBounds.min.x, gameObjBounds.min.y, gameObjBounds.min.z),
+                new Vector3(gameObjBounds.max.x, gameObjBounds.min.y, gameObjBounds.max.z),
+                new Vector3(gameObjBounds.min.x, gameObjBounds.min.y, gameObjBounds.max.z),
+                new Vector3(gameObjBounds.max.x, gameObjBounds.min.y, gameObjBounds.min.z),
+                
+                // top
+                new Vector3(gameObjBounds.min.x, gameObjBounds.max.y, gameObjBounds.min.z),
+                new Vector3(gameObjBounds.max.x, gameObjBounds.max.y, gameObjBounds.max.z),
+                new Vector3(gameObjBounds.min.x, gameObjBounds.max.y, gameObjBounds.max.z),
+                new Vector3(gameObjBounds.max.x, gameObjBounds.max.y, gameObjBounds.min.z)
+                
+            };
+
+            Vector3 ownerPosition = transform.position;
+            ownerPosition.y = height / 2;
+            foreach (var vertex in allVertices)
+            {
+                if (!Physics.Linecast(ownerPosition, vertex, occlusionLayers)) return true;
+            }
+
+            return false;
         }
     }
 }
