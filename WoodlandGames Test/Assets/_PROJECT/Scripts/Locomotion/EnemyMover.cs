@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -22,20 +23,12 @@ namespace _PROJECT.Scripts.Locomotion
 
         public bool MoveToPosition(Vector3 position)
         {
-            if (!CanMoveToPosition(position)) return false;
-            
-            _navMeshAgent.destination = position;
-            _navMeshAgent.speed = defaultSpeed;
-            return true;
+            return MoveToPositionWithSpeed(position, defaultSpeed);
         }
 
         public bool ChaseToPosition(Vector3 position)
         {
-            if (!CanMoveToPosition(position)) return false;
-
-            _navMeshAgent.destination = position;
-            _navMeshAgent.speed = chasingSpeed;
-            return true;
+            return MoveToPositionWithSpeed(position, chasingSpeed);
         }
 
         public bool CanMoveToPosition(Vector3 position)
@@ -54,6 +47,20 @@ namespace _PROJECT.Scripts.Locomotion
         public void ResumeMovement()
         {
             _navMeshAgent.isStopped = false;
+        }
+
+        private bool MoveToPositionWithSpeed(Vector3 position, float speed)
+        {
+            if (!CanMoveToPosition(position))
+            {
+                _navMeshAgent.isStopped = true;
+                return false;
+            }
+
+            _navMeshAgent.destination = position;
+            _navMeshAgent.speed = speed;
+            _navMeshAgent.isStopped = false;
+            return true;
         }
     }
 }

@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 namespace _PROJECT.Scripts.StateMachines.Enemy
 {
     public abstract class EnemyBaseState : State
@@ -7,6 +10,17 @@ namespace _PROJECT.Scripts.StateMachines.Enemy
         protected EnemyBaseState(EnemyStateMachine stateMachine)
         {
             StateMachine = stateMachine;
+        }
+        
+        protected void OnTargetDetected(List<Transform> detectedTargets)
+        {
+            foreach (Transform target in detectedTargets)
+            {
+                if (StateMachine.EnemyMover.CanMoveToPosition(target.position))
+                {
+                    StateMachine.SwitchState(new EnemyChasingState(StateMachine, detectedTargets));
+                }
+            }
         }
     }
 }

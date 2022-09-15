@@ -22,6 +22,7 @@ namespace _PROJECT.Scripts.Locomotion
         {
             if (AtWaypoint())
             {
+                _enemyMover.StopMovement();
                 _timeSinceArrivedAtWaypoint = 0f;
                 ReloadWaypoint();
             }

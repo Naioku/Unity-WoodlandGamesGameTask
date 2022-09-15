@@ -380,7 +380,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 360244568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.33, y: 0.98, z: -16.82}
+  m_LocalPosition: {x: 20.39, y: 0.98, z: -16.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -987,6 +987,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <EnemyDoorDetector>k__BackingField: {fileID: 1349939976}
   <AISensor>k__BackingField: {fileID: 13089310}
+  <ChasingWaypointsTolerance>k__BackingField: 1
+  <SuspicionTime>k__BackingField: 2
 --- !u!195 &1210530176
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1036,7 +1038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolPath: {fileID: 1955617741}
-  waypointTolerance: 1
+  waypointTolerance: 2.5
   dwellingTime: 1
 --- !u!1001 &1221041499
 PrefabInstance:

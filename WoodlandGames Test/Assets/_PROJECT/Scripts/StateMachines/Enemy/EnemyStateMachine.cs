@@ -11,6 +11,10 @@ namespace _PROJECT.Scripts.StateMachines.Enemy
 
         [field: SerializeField] public EnemyDoorDetector EnemyDoorDetector { get; private set; }
         [field: SerializeField] public AISensor AISensor { get; private set; }
+        
+        [field: Header("Suspicion state")]
+        [field: SerializeField] public float ChasingWaypointsTolerance { get; private set; } = 1f;
+        [field: SerializeField] public float SuspicionTime { get; private set; } = 2f;
 
         private void Awake()
         {

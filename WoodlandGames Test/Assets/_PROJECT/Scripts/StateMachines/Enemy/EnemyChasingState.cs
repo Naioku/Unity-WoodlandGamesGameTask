@@ -6,6 +6,7 @@ namespace _PROJECT.Scripts.StateMachines.Enemy
     public class EnemyChasingState : EnemyBaseState
     {
         private readonly List<Transform> _detectedTargets;
+        private Vector3 _lastSeenTargetPosition;
 
         public EnemyChasingState(EnemyStateMachine stateMachine, List<Transform> detectedTargets) : base(stateMachine)
         {
@@ -19,24 +20,29 @@ namespace _PROJECT.Scripts.StateMachines.Enemy
         public override void Tick(float deltaTime)
         {
             Transform closestTarget = GetClosestTarget();
-            if (closestTarget == null)
+            
+            if (closestTarget != null)
             {
-                Debug.Log("Switching to SuspicionState...");
-                // StateMachine.SwitchState(new EnemySuspicionState(StateMachine));
-                StateMachine.SwitchState(new EnemyPatrollingState(StateMachine));
-                return;
-            }
-
-            if (!StateMachine.EnemyMover.ChaseToPosition(closestTarget.position))
+                SaveLastSeenTargetPosition(closestTarget);
+                
+                if (!StateMachine.EnemyMover.ChaseToPosition(closestTarget.position))
+                {
+                    StateMachine.SwitchState(new EnemySuspicionState(StateMachine, _lastSeenTargetPosition));
+                }
+            } 
+            else
             {
-                Debug.Log("Switching to SuspicionState...");
-                // StateMachine.SwitchState(new EnemySuspicionState(StateMachine));
-                StateMachine.SwitchState(new EnemyPatrollingState(StateMachine));
+                StateMachine.SwitchState(new EnemySuspicionState(StateMachine, _lastSeenTargetPosition));
             }
         }
 
         public override void Exit()
         {
+        }
+
+        private void SaveLastSeenTargetPosition(Transform closestTarget)
+        {
+            _lastSeenTargetPosition = closestTarget.position;
         }
 
         private Transform GetClosestTarget()
