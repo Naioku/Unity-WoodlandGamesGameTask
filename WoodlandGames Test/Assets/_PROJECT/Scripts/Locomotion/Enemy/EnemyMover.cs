@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace _PROJECT.Scripts.Locomotion
+namespace _PROJECT.Scripts.Locomotion.Enemy
 {
     public class EnemyMover : MonoBehaviour
     {

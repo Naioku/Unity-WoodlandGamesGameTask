@@ -23,21 +23,15 @@ namespace _PROJECT.Scripts.StateMachines.Enemy
             
             if (closestTarget != null)
             {
-                Debug.Log("closestTarget != null");
-
                 SaveLastSeenTargetPosition(closestTarget);
                 
                 if (!StateMachine.EnemyMover.ChaseToPosition(closestTarget.position))
                 {
-                    Debug.Log("!ChaseToPosition");
-                    
                     StateMachine.SwitchState(new EnemySuspicionState(StateMachine, _lastSeenTargetPosition));
                 }
             } 
             else
             {
-                Debug.Log("closestTarget == null");
-                
                 StateMachine.SwitchState(new EnemySuspicionState(StateMachine, _lastSeenTargetPosition));
             }
         }

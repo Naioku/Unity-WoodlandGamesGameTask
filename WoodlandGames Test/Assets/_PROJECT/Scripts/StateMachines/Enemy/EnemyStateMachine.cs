@@ -1,5 +1,6 @@
 using _PROJECT.Scripts.Combat;
 using _PROJECT.Scripts.Locomotion;
+using _PROJECT.Scripts.Locomotion.Enemy;
 using UnityEngine;
 
 namespace _PROJECT.Scripts.StateMachines.Enemy
@@ -45,18 +46,12 @@ namespace _PROJECT.Scripts.StateMachines.Enemy
 
         public void SwitchToDefaultState()
         {
-            Debug.Log("SwitchToDefaultState");
-            
             if (PatrollingBehavior == null)
             {
-                Debug.Log("SwitchToGuardingState");
-
                 SwitchState(new EnemyGuardingState(this, _guardingPosition));
             }
             else
             {
-                Debug.Log("SwitchToPatrollingState");
-
                 SwitchState(new EnemyPatrollingState(this));
             }
         }
