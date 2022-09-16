@@ -961,7 +961,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1116094458
 Transform:
   m_ObjectHideFlags: 0
@@ -2414,14 +2414,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1970391140}
     m_Modifications:
-    - target: {fileID: 4841092177458126867, guid: 2d9ea473201799e43adb493b4db5f6b5, type: 3}
-      propertyPath: _shape
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4841092177458126867, guid: 2d9ea473201799e43adb493b4db5f6b5, type: 3}
-      propertyPath: _radius
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7102041862453583140, guid: 2d9ea473201799e43adb493b4db5f6b5, type: 3}
       propertyPath: m_Name
       value: SafePlace
