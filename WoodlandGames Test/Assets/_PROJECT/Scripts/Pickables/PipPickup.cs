@@ -1,22 +1,21 @@
-using _PROJECT.Scripts.Core;
 using UnityEngine;
 
 namespace _PROJECT.Scripts.Pickables
 {
     public class PipPickup : MonoBehaviour
     {
-        private GameSession _gameSession;
+        private ScoreKeeper _scoreKeeper;
 
-        private void Start()
+        private void Awake()
         {
-            _gameSession = FindObjectOfType<GameSession>();
+            _scoreKeeper = transform.GetComponentInParent<ScoreKeeper>();
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (!other.CompareTag("Player")) return;
-            
-            _gameSession.AddPoint();
+
+            _scoreKeeper.AddPoint();
             Destroy(gameObject);
         }
     }

@@ -1,4 +1,4 @@
-using _PROJECT.Scripts.Pickables;
+using _PROJECT.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,26 +6,15 @@ namespace _PROJECT.Scripts.Core
 {
     public class GameSession : MonoBehaviour
     {
-        private int _allPipsQuantity;
-        private int _pipsGathered;
+        [SerializeField] private int playerLifes;
 
-        private void Awake()
+        public void DropLife()
         {
-            _allPipsQuantity = FindObjectsOfType<PipPickup>().Length;
-        }
-
-        public void AddPoint()
-        {
-            _pipsGathered++;
-            if (_pipsGathered == _allPipsQuantity)
+            playerLifes--;
+            if (playerLifes == 0)
             {
-                LoadNextStage();
+                SceneManager.LoadScene(SceneManagementEnum.Fail.GetHashCode());
             }
-        }
-
-        private static void LoadNextStage()
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }
