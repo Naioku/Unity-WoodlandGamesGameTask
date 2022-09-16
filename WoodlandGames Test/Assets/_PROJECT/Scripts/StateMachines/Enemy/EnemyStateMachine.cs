@@ -1,5 +1,4 @@
 using _PROJECT.Scripts.Combat;
-using _PROJECT.Scripts.Locomotion;
 using _PROJECT.Scripts.Locomotion.Enemy;
 using UnityEngine;
 

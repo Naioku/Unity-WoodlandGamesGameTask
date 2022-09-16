@@ -74,4 +74,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e05943b3457ea254b90ec678051e75e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLifes: 5
+  <PlayerLifes>k__BackingField: 2
