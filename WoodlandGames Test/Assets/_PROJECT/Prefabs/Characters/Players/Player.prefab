@@ -2152,9 +2152,9 @@ GameObject:
   - component: {fileID: 143216527105656914}
   - component: {fileID: 5887047868504882910}
   - component: {fileID: 7862337121974149806}
-  - component: {fileID: 3632681997501115095}
   - component: {fileID: 2461395978517474765}
-  m_Layer: 7
+  - component: {fileID: 6234730808418089330}
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2394,20 +2394,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!136 &3632681997501115095
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7862337121974149794}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 1.9
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!54 &2461395978517474765
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2424,6 +2410,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6234730808418089330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7862337121974149794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c200e82f19c8b954382131bf20e1a13e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7968513023501031166
 GameObject:
   m_ObjectHideFlags: 0

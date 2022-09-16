@@ -24,7 +24,6 @@ namespace _PROJECT.Scripts.StateMachines.Enemy
         {
             if (_canMoveToDestination && 
                 !IsDestinationReached(_lastSeenTargetPosition, StateMachine.ChasingWaypointsTolerance)) return;
-            
             _suspicionTimer -= Time.deltaTime;
 
             if (_suspicionTimer <= 0f)
