@@ -43,5 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cbc9363ca870c94e87ead64493a990c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <StagesConfig>k__BackingField: {fileID: 11400000, guid: fdffe5a506a8b274a839df766c01698f, type: 2}
-  stageLevel: 1
+  <StageLevel>k__BackingField: 1
+  stagesConfig: {fileID: 11400000, guid: fdffe5a506a8b274a839df766c01698f, type: 2}

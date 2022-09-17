@@ -4,13 +4,13 @@ namespace _PROJECT.Scripts.Core
 {
     public class StageData : MonoBehaviour
     {
-        [field: SerializeField] public StagesConfig StagesConfig { get; private set; }
+        [field: SerializeField] [field: Range(1, 99)] public int StageLevel { get; private set; }
         
-        [SerializeField] [Range(1, 99)] private int stageLevel;
+        [SerializeField] private StagesConfig stagesConfig;
 
         public bool GetDataValue(DataType dataType, ObjectGroupType objectGroupType, out float value)
         {
-            return StagesConfig.GetDataValue(dataType, objectGroupType, stageLevel, out value);
+            return stagesConfig.GetDataValue(dataType, objectGroupType, StageLevel, out value);
         }
     }
 }

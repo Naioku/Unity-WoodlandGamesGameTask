@@ -5620,6 +5620,10 @@ PrefabInstance:
       propertyPath: stageLevel
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1574725490055594482, guid: 2fef8da3ac5144a428332636a34f7e55, type: 3}
+      propertyPath: <StageLevel>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1707774523899758679, guid: 2fef8da3ac5144a428332636a34f7e55, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
