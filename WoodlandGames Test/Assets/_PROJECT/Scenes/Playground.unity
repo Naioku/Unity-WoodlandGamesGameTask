@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageVariables:
-  - {fileID: 8681053898529725962, guid: 92a4e06e9ea3bba4d9bb38481589048f, type: 3}
-  - {fileID: 8276608890756055510, guid: 85ff7c03e3b2d5a41a8835f06dd01b96, type: 3}
+  - {fileID: 6827535328235208657, guid: 4e800ffe65179d5489d2126b6ef5b873, type: 3}
+  - {fileID: 6827535328235208657, guid: e6de77769b98bdd42bc9771bc09c329c, type: 3}
 --- !u!4 &58096540
 Transform:
   m_ObjectHideFlags: 0
