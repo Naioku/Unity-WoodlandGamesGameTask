@@ -475,7 +475,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 183.2}
+  m_AnchoredPosition: {x: 0, y: 160}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &717561756
@@ -518,16 +518,16 @@ PrefabInstance:
     - target: {fileID: 4210423971974003384, guid: 1c01cc200af02964ca5cadce95013b3f, type: 3}
       propertyPath: m_text
       value: 'This is a labyrinth game similar to old cool PacMan, but in 3D. You
-        have to collect all "pips" to get to the next stage. There are 2 stages:
+        have to collect all blue "pips" to get to the next stage. There are 2 stages:
         first is easier, second one has higher dificulty level.'
       objectReference: {fileID: 0}
     - target: {fileID: 4210423971974003384, guid: 1c01cc200af02964ca5cadce95013b3f, type: 3}
       propertyPath: m_fontSize
-      value: 40
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 4210423971974003384, guid: 1c01cc200af02964ca5cadce95013b3f, type: 3}
       propertyPath: m_fontSizeBase
-      value: 40
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 4210423971974003384, guid: 1c01cc200af02964ca5cadce95013b3f, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -742,15 +742,17 @@ PrefabInstance:
         particles), safe places (surrounded with yellow-orange particles) - there
         enemy can''t reach You. You also want to know that there are two types of
         door: violet - they can be passed by both You and enemies, blue - they can
-        be passed only by You.'
+        be passed only by You. Regarding to enemies there are 2 types: golden-yellow
+        guards - they move only when see You and red patrolling ones - they have
+        set patroling paths, so be careful.'
       objectReference: {fileID: 0}
     - target: {fileID: 4210423971974003384, guid: 1c01cc200af02964ca5cadce95013b3f, type: 3}
       propertyPath: m_fontSize
-      value: 40
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 4210423971974003384, guid: 1c01cc200af02964ca5cadce95013b3f, type: 3}
       propertyPath: m_fontSizeBase
-      value: 40
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 4210423971974003384, guid: 1c01cc200af02964ca5cadce95013b3f, type: 3}
       propertyPath: m_HorizontalAlignment
