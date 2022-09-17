@@ -851,6 +851,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7405730621648386426, guid: 2d9ea473201799e43adb493b4db5f6b5, type: 3}
   m_PrefabInstance: {fileID: 878518917}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1028421335 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1574725490055594482, guid: 2fef8da3ac5144a428332636a34f7e55, type: 3}
+  m_PrefabInstance: {fileID: 4693427734230124655}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cbc9363ca870c94e87ead64493a990c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1092871573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1788,6 +1799,18 @@ PrefabInstance:
       propertyPath: patrolPath
       value: 
       objectReference: {fileID: 1955617741}
+    - target: {fileID: 7480561550614663925, guid: decdc310b9b9ab447a51b333f671e36a, type: 3}
+      propertyPath: _stageData
+      value: 
+      objectReference: {fileID: 1028421335}
+    - target: {fileID: 7480561551543734634, guid: decdc310b9b9ab447a51b333f671e36a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7480561551543734634, guid: decdc310b9b9ab447a51b333f671e36a, type: 3}
+      propertyPath: stageData
+      value: 
+      objectReference: {fileID: 1028421335}
     - target: {fileID: 7480561551543734677, guid: decdc310b9b9ab447a51b333f671e36a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2595,10 +2618,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1763116862}
     m_Modifications:
+    - target: {fileID: 5114872647518363847, guid: cf1fca75998fe874480e5b26c947bb0c, type: 3}
+      propertyPath: _stageData
+      value: 
+      objectReference: {fileID: 1028421335}
     - target: {fileID: 5114872648312056284, guid: cf1fca75998fe874480e5b26c947bb0c, type: 3}
       propertyPath: m_Name
       value: DoorDetector
       objectReference: {fileID: 0}
+    - target: {fileID: 5114872648451564376, guid: cf1fca75998fe874480e5b26c947bb0c, type: 3}
+      propertyPath: stageData
+      value: 
+      objectReference: {fileID: 1028421335}
     - target: {fileID: 5114872648451564379, guid: cf1fca75998fe874480e5b26c947bb0c, type: 3}
       propertyPath: patrolPath
       value: 

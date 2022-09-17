@@ -5,16 +5,16 @@ namespace _PROJECT.Scripts.Combat
 {
     public class CombatTarget : MonoBehaviour
     {
-        private GameSession _gameSession;
+        private PlayerLifes _playerLifes;
 
         private void Awake()
         {
-            _gameSession = FindObjectOfType<GameSession>();
+            _playerLifes = FindObjectOfType<PlayerLifes>();
         }
 
         internal void CatchTarget()
         {
-            _gameSession.DropLife();
+            _playerLifes.DropLife();
         }
     }
 }

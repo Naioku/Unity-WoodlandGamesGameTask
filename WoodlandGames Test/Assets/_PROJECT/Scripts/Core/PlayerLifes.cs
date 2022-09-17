@@ -5,17 +5,17 @@ using UnityEngine.SceneManagement;
 
 namespace _PROJECT.Scripts.Core
 {
-    public class GameSession : MonoBehaviour
+    public class PlayerLifes : MonoBehaviour
     {
         public event Action<int> DropLifeEvent;
-        
-        [field: SerializeField] public int PlayerLifes { get; private set; }
+
+        [field: SerializeField] public int Lifes { get; private set; } = 5;
 
         public void DropLife()
         {
-            PlayerLifes--;
-            DropLifeEvent?.Invoke(PlayerLifes);
-            if (PlayerLifes == 0)
+            Lifes--;
+            DropLifeEvent?.Invoke(Lifes);
+            if (Lifes == 0)
             {
                 SceneManager.LoadScene(SceneManagementEnum.Fail.GetHashCode());
             }

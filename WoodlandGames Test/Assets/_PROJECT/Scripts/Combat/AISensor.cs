@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _PROJECT.Scripts.Core;
 using UnityEngine;
 
 namespace _PROJECT.Scripts.Combat
@@ -19,7 +20,8 @@ namespace _PROJECT.Scripts.Combat
         [SerializeField] [Tooltip("Times / second")] private int scanFrequency = 30;
         [SerializeField] private LayerMask searchingLayers;
         [SerializeField] private LayerMask occlusionLayers;
-        
+
+        private StageData _stageData;
         private readonly List<Transform> _detectedObjects = new List<Transform>();
         private Mesh _mesh;
         private int _count;
@@ -36,7 +38,27 @@ namespace _PROJECT.Scripts.Combat
                 return _detectedObjects;
             }
         }
-        
+
+        private void Awake()
+        {
+            _stageData = FindObjectOfType<StageData>();
+        }
+
+        private void Start()
+        {
+            if (_stageData.GetDataValue(DataType.SightDistance, ObjectGroupType.Enemy, out float value))
+            {
+                distance = value;
+            }
+
+            if (_stageData.GetDataValue(DataType.SightAngle, ObjectGroupType.Enemy, out value))
+            {
+                angle = value;
+            }
+            
+            _mesh = CreateWedgeMesh();
+        }
+
         void Update()
         {
             _scanTimer -= Time.deltaTime;

@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: 360244571}
   - component: {fileID: 360244570}
   - component: {fileID: 360244569}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -577,6 +577,17 @@ Transform:
   m_Father: {fileID: 2125473889}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &545677099 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1574725490055594482, guid: 2fef8da3ac5144a428332636a34f7e55, type: 3}
+  m_PrefabInstance: {fileID: 4693427734230124655}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cbc9363ca870c94e87ead64493a990c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &560944190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2343557988726097380, guid: 5b70fce1574aefc4cb68b92f61c29348, type: 3}
@@ -1726,6 +1737,10 @@ PrefabInstance:
       propertyPath: patrolPath
       value: 
       objectReference: {fileID: 1955617741}
+    - target: {fileID: 7480561551543734634, guid: decdc310b9b9ab447a51b333f671e36a, type: 3}
+      propertyPath: stageData
+      value: 
+      objectReference: {fileID: 545677099}
     - target: {fileID: 7480561551543734677, guid: decdc310b9b9ab447a51b333f671e36a, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2186,6 +2201,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1574725490055594482, guid: 2fef8da3ac5144a428332636a34f7e55, type: 3}
+      propertyPath: stageLevel
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1707774523899758679, guid: 2fef8da3ac5144a428332636a34f7e55, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2412,6 +2431,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1763116862}
     m_Modifications:
+    - target: {fileID: 5114872648451564376, guid: cf1fca75998fe874480e5b26c947bb0c, type: 3}
+      propertyPath: stageData
+      value: 
+      objectReference: {fileID: 545677099}
     - target: {fileID: 5114872648451564379, guid: cf1fca75998fe874480e5b26c947bb0c, type: 3}
       propertyPath: patrolPath
       value: 
