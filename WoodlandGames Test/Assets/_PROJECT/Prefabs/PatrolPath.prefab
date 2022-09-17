@@ -136,4 +136,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b009be98727e6384f91f2fd4dc47888c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointDisplayRadius: 1
+  waypointDisplayRadius: 0.5

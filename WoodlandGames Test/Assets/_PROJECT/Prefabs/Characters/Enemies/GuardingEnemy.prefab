@@ -43,11 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9919ab01665ddfb438d2fbef4e3853d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 9
-  angle: 60
+  distance: 13
+  angle: 120
   height: 1.8
-  defaultMeshColor: {r: 0.3657968, g: 1, b: 0.3254717, a: 0.38}
-  detectedStateMeshColor: {r: 0.9846383, g: 1, b: 0.32549024, a: 0.38}
+  defaultMeshColor: {r: 0.3657968, g: 1, b: 0.3254717, a: 0.2509804}
+  detectedStateMeshColor: {r: 0.9846383, g: 1, b: 0.32549024, a: 0.2509804}
   rangeGizmosColor: {r: 0, g: 1, b: 0, a: 1}
   objectsInSightGizmosColor: {r: 0, g: 0, b: 1, a: 1}
   scanFrequency: 30
@@ -221,7 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 873139209c74f2a4898e54af66c9c32d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageData: {fileID: 0}
+  chasingSpeed: 2
+  defaultSpeed: 4
 --- !u!65 &3683483949716237359
 BoxCollider:
   m_ObjectHideFlags: 0
