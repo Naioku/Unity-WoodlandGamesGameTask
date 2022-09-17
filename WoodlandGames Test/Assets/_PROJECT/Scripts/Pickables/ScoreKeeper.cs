@@ -1,6 +1,6 @@
 using System;
+using _PROJECT.Scripts.Core;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace _PROJECT.Scripts.Pickables
 {
@@ -10,9 +10,13 @@ namespace _PROJECT.Scripts.Pickables
         
         public int AllPipsQuantity { get; private set; }
         public int PipsGathered { get; private set; }
+
+        private StageData _stageData;
         
         private void Awake()
         {
+            _stageData = FindObjectOfType<StageData>();
+            
             AllPipsQuantity = transform.childCount;
             PipsGathered = 0;
         }
@@ -23,7 +27,7 @@ namespace _PROJECT.Scripts.Pickables
             AddPointEvent?.Invoke(PipsGathered, AllPipsQuantity);
             if (PipsGathered == AllPipsQuantity)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                _stageData.StageLevelUp();
             }
         }
     }

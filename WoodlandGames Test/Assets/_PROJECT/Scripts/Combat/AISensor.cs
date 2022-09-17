@@ -46,14 +46,17 @@ namespace _PROJECT.Scripts.Combat
 
         private void Start()
         {
-            if (_stageData.GetDataValue(DataType.SightDistance, ObjectGroupType.Enemy, out float value))
+            if (_stageData != null)
             {
-                distance = value;
-            }
+                if (_stageData.GetDataValue(DataType.SightDistance, ObjectGroupType.Enemy, out float value))
+                {
+                    distance = value;
+                }
 
-            if (_stageData.GetDataValue(DataType.SightAngle, ObjectGroupType.Enemy, out value))
-            {
-                angle = value;
+                if (_stageData.GetDataValue(DataType.SightAngle, ObjectGroupType.Enemy, out value))
+                {
+                    angle = value;
+                }
             }
             
             _mesh = CreateWedgeMesh();

@@ -7,7 +7,6 @@ namespace _PROJECT.Scripts.Utils
     {
         MainMenu,
         Playground,
-        Playground2,
         Win,
         Fail
     }

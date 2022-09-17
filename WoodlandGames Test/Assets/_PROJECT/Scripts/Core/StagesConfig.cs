@@ -22,6 +22,12 @@ namespace _PROJECT.Scripts.Core
             value = valueDict;
             return true;
         }
+
+        public int GetLevelQuantity()
+        {
+            BuildLookup();
+            return _lookupTable.Count;
+        }
         
         private void BuildLookup()
         {
