@@ -44,8 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <StageLevel>k__BackingField: 1
+  StartingLifes: 5
   stagesConfig: {fileID: 11400000, guid: fdffe5a506a8b274a839df766c01698f, type: 2}
-  stageVariables:
-  - {fileID: 8681053898529725962, guid: 92a4e06e9ea3bba4d9bb38481589048f, type: 3}
-  - {fileID: 8276608890756055510, guid: 85ff7c03e3b2d5a41a8835f06dd01b96, type: 3}
-  variablesHierarchyFolder: {fileID: 0}
