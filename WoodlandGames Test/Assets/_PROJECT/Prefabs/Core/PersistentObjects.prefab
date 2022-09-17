@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 3667416281712487518}
   - component: {fileID: 9090938513323052892}
   m_Layer: 0
-  m_Name: GameSession
+  m_Name: PlayerLifes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,4 +74,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e05943b3457ea254b90ec678051e75e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <PlayerLifes>k__BackingField: 2
+  <Lifes>k__BackingField: 5
