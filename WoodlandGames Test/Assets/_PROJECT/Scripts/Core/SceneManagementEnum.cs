@@ -1,4 +1,4 @@
-namespace _PROJECT.Scripts.Utils
+namespace _PROJECT.Scripts.Core
 {
     /// <summary>
     /// Order have to be like scenes in the build settings. 

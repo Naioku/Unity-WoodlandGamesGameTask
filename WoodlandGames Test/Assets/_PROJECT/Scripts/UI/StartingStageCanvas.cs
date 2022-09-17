@@ -13,18 +13,18 @@ namespace _PROJECT.Scripts.UI
         [SerializeField] private TextMeshProUGUI stageInfoLabel;
         
         private CanvasGroup _canvasGroup;
-        private StageData _stageData;
+        private GameSession _gameSession;
 
         private void Awake()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
-            _stageData = FindObjectOfType<StageData>();
+            _gameSession = FindObjectOfType<GameSession>();
         }
 
         private void Start()
         {
             FadeOutImmediate();
-            stageInfoLabel.text = $"Stage {_stageData.StageLevel.ToString()}";
+            stageInfoLabel.text = $"Stage {_gameSession.StageLevel.ToString()}";
             StartCoroutine(FadeInOut());
         }
 

@@ -9,24 +9,24 @@ namespace _PROJECT.Scripts.UI
     {
         [SerializeField] private TextMeshProUGUI lifesValueLabel;
         [SerializeField] private TextMeshProUGUI scoreValueLabel;
-        StageData _stageData;
+        GameSession _gameSession;
         private ScoreKeeper _scoreKeeper;
 
         private void Awake()
         {
-            _stageData = FindObjectOfType<StageData>();
+            _gameSession = FindObjectOfType<GameSession>();
             _scoreKeeper = FindObjectOfType<ScoreKeeper>();
         }
 
         private void Start()
         {
-            RefreshLifeDisplay(_stageData.Lifes);
+            RefreshLifeDisplay(_gameSession.Lifes);
             RefreshScoreDisplay(_scoreKeeper.PipsGathered, _scoreKeeper.AllPipsQuantity);
         }
 
         private void OnEnable()
         {
-            _stageData.DropLifeEvent += RefreshLifeDisplay;
+            _gameSession.DropLifeEvent += RefreshLifeDisplay;
             _scoreKeeper.AddPointEvent += RefreshScoreDisplay;
         }
 
@@ -37,7 +37,7 @@ namespace _PROJECT.Scripts.UI
 
         private void OnDisable()
         {
-            _stageData.DropLifeEvent -= RefreshLifeDisplay;
+            _gameSession.DropLifeEvent -= RefreshLifeDisplay;
             _scoreKeeper.AddPointEvent -= RefreshScoreDisplay;
 
         }

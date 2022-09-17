@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4693427733962517275}
   - component: {fileID: 6344121242008160479}
+  - component: {fileID: 3596461395950836179}
   m_Layer: 0
   m_Name: Core
   m_TagString: Untagged
@@ -80,6 +81,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   persistentObjectsPrefab: {fileID: 1162857181823027949, guid: 11a58f952f403eb45a81d1676e9b043e, type: 3}
+--- !u!114 &3596461395950836179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4693427733962517276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98348a6a01339134796f26b94596f07e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1257300900858430862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1597,6 +1610,10 @@ PrefabInstance:
     - target: {fileID: 1019896610482593004, guid: 1c514e006f6429a4c857fa1f84e547e2, type: 3}
       propertyPath: m_Name
       value: StartingStageCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019896610482593004, guid: 1c514e006f6429a4c857fa1f84e547e2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5934247102255439349, guid: 1c514e006f6429a4c857fa1f84e547e2, type: 3}
       propertyPath: m_Pivot.x

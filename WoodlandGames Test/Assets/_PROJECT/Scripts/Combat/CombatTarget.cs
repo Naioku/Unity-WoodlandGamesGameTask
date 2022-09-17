@@ -5,16 +5,16 @@ namespace _PROJECT.Scripts.Combat
 {
     public class CombatTarget : MonoBehaviour
     {
-        private StageData _stageData;
+        private GameSession _gameSession;
 
         private void Awake()
         {
-            _stageData = FindObjectOfType<StageData>();
+            _gameSession = FindObjectOfType<GameSession>();
         }
 
         internal void CatchTarget()
         {
-            _stageData.DropLife();
+            _gameSession.DropLife();
         }
     }
 }

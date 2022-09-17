@@ -11,11 +11,11 @@ namespace _PROJECT.Scripts.Pickables
         public int AllPipsQuantity { get; private set; }
         public int PipsGathered { get; private set; }
 
-        private StageData _stageData;
+        private GameSession _gameSession;
         
         private void Awake()
         {
-            _stageData = FindObjectOfType<StageData>();
+            _gameSession = FindObjectOfType<GameSession>();
             
             AllPipsQuantity = transform.childCount;
             PipsGathered = 0;
@@ -27,7 +27,7 @@ namespace _PROJECT.Scripts.Pickables
             AddPointEvent?.Invoke(PipsGathered, AllPipsQuantity);
             if (PipsGathered == AllPipsQuantity)
             {
-                _stageData.StageLevelUp();
+                _gameSession.StageLevelUp();
             }
         }
     }

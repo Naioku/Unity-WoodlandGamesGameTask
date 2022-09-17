@@ -10,20 +10,20 @@ namespace _PROJECT.Scripts.Locomotion.Enemy
         [SerializeField] private float chasingSpeed = 2f;
         [SerializeField] private float defaultSpeed = 4f;
         
-        private StageData _stageData;
+        private GameSession _gameSession;
         private NavMeshAgent _navMeshAgent;
 
         private void Awake()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
 
-            _stageData = FindObjectOfType <StageData>();
-            if (_stageData.GetDataValue(DataType.ChasingSpeed, ObjectGroupType.Enemy, out float value))
+            _gameSession = FindObjectOfType <GameSession>();
+            if (_gameSession.GetDataValue(DataType.ChasingSpeed, ObjectGroupType.Enemy, out float value))
             {
                 chasingSpeed = value;
             }
 
-            if (_stageData.GetDataValue(DataType.DefaultSpeed, ObjectGroupType.Enemy, out value))
+            if (_gameSession.GetDataValue(DataType.DefaultSpeed, ObjectGroupType.Enemy, out value))
             {
                 defaultSpeed = value;
             }
