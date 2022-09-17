@@ -1,11 +1,10 @@
 using System;
-using _PROJECT.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace _PROJECT.Scripts.Core
 {
-    public class StageData : MonoBehaviour
+    public class GameSession : MonoBehaviour
     {
         public event Action<int> DropLifeEvent;
         
@@ -55,6 +54,12 @@ namespace _PROJECT.Scripts.Core
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
+        }
+
+        public void LoadMainManu()
+        {
+            SceneManager.LoadScene(SceneManagementEnum.MainMenu.GetHashCode());
+            ResetStageData();
         }
 
         private void ResetStageData()

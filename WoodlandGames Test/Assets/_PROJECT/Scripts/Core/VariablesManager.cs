@@ -6,19 +6,19 @@ namespace _PROJECT.Scripts.Core
     {
         [SerializeField] private GameObject[] stageVariables;
 
-        private StageData _stageData;
+        private GameSession _gameSession;
 
         void Awake()
         {
-            _stageData = FindObjectOfType<StageData>();
+            _gameSession = FindObjectOfType<GameSession>();
             SpawnVariables();
         }
 
         private void SpawnVariables()
         {
-            if (_stageData.StageLevel > stageVariables.Length) return;
+            if (_gameSession.StageLevel > stageVariables.Length) return;
             
-            Instantiate(stageVariables[_stageData.StageLevel - 1], transform);
+            Instantiate(stageVariables[_gameSession.StageLevel - 1], transform);
         }
     }
 }

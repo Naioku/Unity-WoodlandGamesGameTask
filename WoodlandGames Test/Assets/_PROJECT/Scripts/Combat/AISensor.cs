@@ -21,7 +21,7 @@ namespace _PROJECT.Scripts.Combat
         [SerializeField] private LayerMask searchingLayers;
         [SerializeField] private LayerMask occlusionLayers;
 
-        private StageData _stageData;
+        private GameSession _gameSession;
         private readonly List<Transform> _detectedObjects = new List<Transform>();
         private Mesh _mesh;
         private int _count;
@@ -41,19 +41,19 @@ namespace _PROJECT.Scripts.Combat
 
         private void Awake()
         {
-            _stageData = FindObjectOfType<StageData>();
+            _gameSession = FindObjectOfType<GameSession>();
         }
 
         private void Start()
         {
-            if (_stageData != null)
+            if (_gameSession != null)
             {
-                if (_stageData.GetDataValue(DataType.SightDistance, ObjectGroupType.Enemy, out float value))
+                if (_gameSession.GetDataValue(DataType.SightDistance, ObjectGroupType.Enemy, out float value))
                 {
                     distance = value;
                 }
 
-                if (_stageData.GetDataValue(DataType.SightAngle, ObjectGroupType.Enemy, out value))
+                if (_gameSession.GetDataValue(DataType.SightAngle, ObjectGroupType.Enemy, out value))
                 {
                     angle = value;
                 }
