@@ -1,13 +1,10 @@
 using _PROJECT.Scripts.Core;
-using _PROJECT.Scripts.InputSystem;
 using UnityEngine;
 
 namespace _PROJECT.Scripts.UI
 {
     public class QuickPauseController : MonoBehaviour
     {
-        [SerializeField] private InputReader _inputReader;
-        
         private GameSession _gameSession;
         private bool _currentState = true;
 
@@ -21,16 +18,14 @@ namespace _PROJECT.Scripts.UI
             ToggleMenu();
         }
 
-        private void OnEnable()
+        private void Update()
         {
-            _inputReader.QuickPauseEvent += ToggleMenu;
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                ToggleMenu();
+            }
         }
-
-        private void OnDisable()
-        {
-            _inputReader.QuickPauseEvent -= ToggleMenu;
-        }
-
+        
         public void Resume()
         {
             ToggleMenu();
